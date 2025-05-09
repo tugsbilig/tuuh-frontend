@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');
+@import "tailwindcss";
+
+
+.font-mongolian {
+  font-family: 'Noto Sans Mongolian', sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+   /* Зургийн замыг зааж өгнө */
+  background-size: cover; /* Зураг нь дэлгэцийн хэмжээнд тохируулах */
+  background-position: center center; /* Зургийн байрлалын тохиргоо */
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: "Noto Sans Mongolian";
+  src: url("/fonts/NotoSansMongolian-Regular.ttf") format("truetype");
+}
+
+
+.mongolian-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns the text from top to bottom */
+  justify-content: center;
+  height: 100%; /* Ensure container takes up full height */
+  overflow: hidden; /* Prevent any text from overflowing */
+  transform: rotate(90deg); /* Rotate the entire container by 90 degrees */
+  transform-origin: center; /* Ensure the rotation happens at the center */
+}
+
+.mongolian-text .row {
+  position: relative;
+  opacity: 0;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  transform: translateY(0); 
+  font-size: 2.5rem;
+/* No initial transform */
+}
+
+.top-animation {
+  animation-name: slideFromTop;
+}
+
+.bottom-animation {
+  animation-name: slideFromBottom;
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100px); /* Start off-screen from the top */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(100px); /* Start off-screen from the bottom */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mongolian-text .row:nth-child(odd) {
+  animation-delay: 0.2s; /* Delay for odd rows */
+}
+
+.mongolian-text .row:nth-child(even) {
+  animation-delay: 0.4s; /* Delay for even rows */
+}
+
+/* Add this CSS to your global styles or a module CSS file */
+.sticky-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* Prevent the images from interfering with interactions */
+}
+
+.sticky-frame img {
+  position: absolute;
+  width: 80px;  /* Adjust the size of the frame image */
+  height: 80px; /* Adjust the size of the frame image */
+}
+
+.sticky-frame .top-left {
+  top: 0;
+  left: 0;
+}
+
+.sticky-frame .top-right {
+  top: 0;
+  right: 0;
+}
+
+.sticky-frame .bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.sticky-frame .bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+/* Timeline Container */
+.timeline-container {
+  padding: 0 20px;
+  max-width: 900px;
+  margin: auto;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+/* Timeline Layout */
+.timeline {
+  position: relative;
+  padding-left: 50px;
+  border-left: 4px solid #fff;
+}
+
+/* Timeline Items (Each Year/Section) */
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item .year {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffcc00;
+  margin-bottom: 5px;
+}
+
+.timeline-item .event {
+  font-size: 1.25rem;
+  color: #f0f0f0;
+}
+
+/* Line connecting the events */
+.timeline-item:before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+}
+
+/* Scrollable Container */
+.timeline-container {
+  max-height: 80vh; /* Adjust this for the scrollable area */
+  overflow-y: scroll;
+  padding-bottom: 40px;
+}
+
+.timeline-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-year {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.timeline-event {
+  font-size: 18px;
+  color: #c7c7c7;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+}
+
+
